@@ -1,7 +1,12 @@
 name: test react app
+
 permissions:
   contents: write
-on: workflow_dispatch
+on: 
+  push:
+    branches:
+      - main
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,11 +19,12 @@ jobs:
           node-version: '18'
       - name: install 
         run: npm install
-      - name: buid
+      - name: build
         run: npm run build
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: build
+
  
